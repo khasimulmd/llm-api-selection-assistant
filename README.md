@@ -1,194 +1,163 @@
-# AI Product Lab 🚀
+# LLM API Selection Assistant 🚀
 
-A modern, open-source web application for experimenting with open-source AI models powered by OpenRouter. Built with Next.js 14, Tailwind CSS, and shadcn/ui.
+A clean, modern web app for testing different AI models through OpenRouter. I built this because I wanted a simple way to compare responses from various open-source LLMs without dealing with complex setups or paid APIs.
 
-![AI Product Lab](https://img.shields.io/badge/Next.js-14-black?style=for-the-badge&logo=next.js)
+![Next.js](https://img.shields.io/badge/Next.js-14-black?style=for-the-badge&logo=next.js)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.3-38B2AC?style=for-the-badge&logo=tailwind-css)
 ![Open Source](https://img.shields.io/badge/Open_Source-Yes-green?style=for-the-badge)
 
-## ✨ Features
+## What's this about?
 
-- 🤖 **Multiple AI Models**: Support for various open-source models via OpenRouter
-- 🎨 **Modern UI**: Beautiful, responsive design with dark mode support
-- ⚡ **Fast & Free**: Uses only free-tier models from OpenRouter
-- 📱 **Responsive**: Works perfectly on desktop, tablet, and mobile
-- ⌨️ **Keyboard Shortcuts**: Ctrl+Enter to submit prompts
-- 📊 **Token Counter**: Real-time token estimation
-- 📋 **Copy to Clipboard**: One-click response copying
-- 🌙 **Dark Mode**: Automatic theme switching
+I got tired of switching between different AI platforms just to test a simple prompt. So I built this - a single interface where you can:
+- Try different open-source models (Mistral, Llama, Gemma, etc.)
+- See responses side by side
+- Keep it all free using OpenRouter's generous free tier
+- Have a nice, responsive UI that works on any device
 
-## 🚀 Quick Start
+## Features that actually matter
 
-### Prerequisites
+- **Multiple models**: Switch between Mistral 7B, Mixtral 8x7B, Llama 3.1, and Gemma 2
+- **Clean interface**: No clutter, just prompt → response
+- **Free forever**: Uses OpenRouter's free tier models
+- **Keyboard shortcuts**: Ctrl+Enter to submit (because who has time for clicking?)
+- **Token counter**: See roughly how many tokens your prompt will use
+- **Copy responses**: One click to copy AI responses
+- **Dark mode**: Because your eyes will thank you
 
-- Node.js 18+ 
-- npm or yarn
-- OpenRouter API key (free)
+## Getting started
 
-### Installation
+### What you need
+- Node.js 18+ (I used 18.17.0)
+- An OpenRouter API key (free, takes 2 minutes to get)
 
-1. **Clone the repository**
+### Quick setup
+
+1. **Clone this repo**
    ```bash
-   git clone https://github.com/khasimulmd/ai-product-lab.git
-   cd ai-product-lab
+   git clone https://github.com/khasimulmd/llm-api-selection-assistant.git
+   cd llm-api-selection-assistant
    ```
 
-2. **Install dependencies**
+2. **Install stuff**
    ```bash
    npm install
    ```
 
-3. **Set up environment variables**
+3. **Set up your API key**
    ```bash
    cp .env.example .env.local
    ```
    
-   Edit `.env.local` and add your OpenRouter API key:
+   Then edit `.env.local` and add your OpenRouter API key:
    ```env
-   OPENROUTER_API_KEY=your_api_key_here
+   OPENROUTER_API_KEY=your_key_here
    ```
 
-4. **Run the development server**
+4. **Run it**
    ```bash
    npm run dev
    ```
 
-5. **Open your browser**
-   Navigate to [http://localhost:3000](http://localhost:3000)
+5. **Open your browser** to [http://localhost:3000](http://localhost:3000)
 
-## 🔧 Setup Script
+### Getting your OpenRouter API key
 
-For a quick setup, you can run the provided setup script:
+1. Go to [OpenRouter](https://openrouter.ai)
+2. Sign up (takes 30 seconds)
+3. Go to API Keys section
+4. Create a new key
+5. Copy it to your `.env.local` file
 
-```bash
-chmod +x setup.sh
-./setup.sh
-```
+That's it. OpenRouter gives you free credits to start, and most of the models I included are available on their free tier.
 
-This script will:
-- Check Node.js version
-- Install dependencies
-- Create environment file
-- Start the development server
+## Deployment
 
-## 🌐 Deployment
+### Vercel (easiest)
 
-### Deploy to Vercel (Recommended)
+1. Fork this repo to your GitHub
+2. Go to [vercel.com](https://vercel.com) and import your fork
+3. Add the environment variable: `OPENROUTER_API_KEY`
+4. Deploy - Vercel handles the rest
 
-1. **Fork this repository** to your GitHub account
+### Other platforms
 
-2. **Connect to Vercel**
-   - Go to [vercel.com](https://vercel.com)
-   - Import your forked repository
-   - Add environment variable: `OPENROUTER_API_KEY`
+Works on any platform that supports Next.js:
+- **Netlify**: Connect your repo, add env vars
+- **Railway**: Import from GitHub, set environment variables
+- **DigitalOcean**: Same deal
 
-3. **Deploy**
-   - Vercel will automatically deploy your app
-   - Get your live URL instantly
-
-### Deploy to Other Platforms
-
-The app can be deployed to any platform that supports Next.js:
-
-- **Netlify**: Connect your GitHub repo and add environment variables
-- **Railway**: Import from GitHub and configure environment variables
-- **DigitalOcean App Platform**: Connect repository and set environment variables
-
-## 🔑 Getting OpenRouter API Key
-
-1. Visit [OpenRouter](https://openrouter.ai)
-2. Sign up for a free account
-3. Navigate to API Keys section
-4. Create a new API key
-5. Copy the key to your `.env.local` file
-
-**Note**: OpenRouter offers free credits for new users, and many models are available on their free tier.
-
-## 🛠️ Tech Stack
+## Tech stack
 
 - **Frontend**: Next.js 14, React 18, TypeScript
-- **Styling**: Tailwind CSS, shadcn/ui components
-- **Backend**: Next.js API Routes
-- **AI Integration**: OpenRouter API
-- **Deployment**: Vercel (recommended)
+- **Styling**: Tailwind CSS with shadcn/ui components
+- **Backend**: Next.js API routes
+- **AI**: OpenRouter API
+- **Hosting**: Vercel (but works anywhere)
 
-## 📁 Project Structure
+## Project structure
 
 ```
-ai-product-lab/
+llm-api-selection-assistant/
 ├── src/
 │   ├── app/
-│   │   ├── api/
-│   │   │   └── chat/
-│   │   │       └── route.ts
-│   │   ├── globals.css
-│   │   ├── layout.tsx
-│   │   └── page.tsx
-│   ├── components/
-│   │   └── ui/
-│   │       ├── button.tsx
-│   │       ├── card.tsx
-│   │       ├── select.tsx
-│   │       └── textarea.tsx
-│   └── lib/
-│       └── utils.ts
-├── public/
-├── .env.example
-├── package.json
-├── tailwind.config.ts
-└── README.md
+│   │   ├── api/chat/route.ts    # Handles OpenRouter API calls
+│   │   ├── globals.css          # Global styles
+│   │   ├── layout.tsx           # Root layout
+│   │   └── page.tsx             # Main app page
+│   ├── components/ui/           # Reusable UI components
+│   └── lib/utils.ts             # Utility functions
+├── public/                      # Static assets
+└── ... config files
 ```
 
-## 🎯 Available Models
+## Available models
 
-The app supports various open-source models available on OpenRouter's free tier:
+I picked these because they're solid performers on OpenRouter's free tier:
 
-- **Mistral 7B Instruct**: Fast and efficient
-- **Mixtral 8x7B Instruct**: High performance
-- **Llama 3.1 8B Instruct**: Meta's latest
-- **Gemma 2 9B IT**: Google's efficient model
+- **Mistral 7B Instruct**: Fast and reliable
+- **Mixtral 8x7B Instruct**: More capable, still quick
+- **Llama 3.1 8B Instruct**: Meta's latest, good balance
+- **Gemma 2 9B IT**: Google's efficient option
 
-## 🔄 Local Model Support (Optional)
+## Want to run models locally?
 
-For completely local inference, you can replace the OpenRouter integration with Ollama:
+If you prefer to run everything on your machine, you can swap out OpenRouter for Ollama:
 
 1. Install [Ollama](https://ollama.ai)
 2. Pull a model: `ollama pull mistral`
 3. Update the API route to use Ollama's local API
-4. Remove OpenRouter dependency
+4. Remove the OpenRouter dependency
 
-## 🤝 Contributing
+## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Found a bug? Want to add a feature? Feel free to:
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+1. Fork the repo
+2. Create a branch (`git checkout -b fix-that-thing`)
+3. Make your changes
+4. Push to the branch (`git push origin fix-that-thing`)
+5. Open a pull request
 
-## 📄 License
+## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+MIT License - do whatever you want with it.
 
-## 🙏 Acknowledgments
+## Thanks
 
-- [OpenRouter](https://openrouter.ai) for providing free access to AI models
-- [shadcn/ui](https://ui.shadcn.com) for the beautiful component library
-- [Next.js](https://nextjs.org) for the amazing React framework
-- [Tailwind CSS](https://tailwindcss.com) for the utility-first CSS framework
+- [OpenRouter](https://openrouter.ai) for the free API access
+- [shadcn/ui](https://ui.shadcn.com) for the clean components
+- [Next.js](https://nextjs.org) for making this so easy to build
+- [Tailwind CSS](https://tailwindcss.com) for the styling
 
-## 📞 Support
-
-If you have any questions or need help:
+## Questions?
 
 - Open an issue on GitHub
-- Check the [OpenRouter documentation](https://openrouter.ai/docs)
-- Join the [Next.js community](https://nextjs.org/community)
+- Check [OpenRouter docs](https://openrouter.ai/docs)
+- Hit up the [Next.js community](https://nextjs.org/community)
 
 ---
 
-**Made with ❤️ by [khasimulmd](https://github.com/khasimulmd)**
+**Built by [khasimulmd](https://github.com/khasimulmd)**
 
-⭐ Star this repository if you found it helpful!
+If this helps you, consider giving it a star! ⭐
