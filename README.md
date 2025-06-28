@@ -1,163 +1,191 @@
-# LLM API Selection Assistant 🚀
+# LLM API Selection Assistant
 
-A clean, modern web app for testing different AI models through OpenRouter. I built this because I wanted a simple way to compare responses from various open-source LLMs without dealing with complex setups or paid APIs.
+A modern web application for testing, comparing, and evaluating open-source LLM APIs with real-time metrics including latency, token usage, and cost estimation. Built with Next.js 14, Tailwind CSS, and designed for developers and AI product managers.
 
-![Next.js](https://img.shields.io/badge/Next.js-14-black?style=for-the-badge&logo=next.js)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.3-38B2AC?style=for-the-badge&logo=tailwind-css)
-![Open Source](https://img.shields.io/badge/Open_Source-Yes-green?style=for-the-badge)
+## ✨ Features
 
-## What's this about?
+- **Multi-Model Support**: Test various open-source models via OpenRouter API
+- **Real-Time Metrics**: Track latency, token usage, and estimated costs
+- **Session History**: Keep track of your recent conversations and performance
+- **API Integration**: Get ready-to-use code snippets (cURL and JavaScript)
+- **Copy-to-Clipboard**: Easy copying of responses and code examples
+- **Clean UI**: Modern, responsive design with excellent developer experience
 
-I got tired of switching between different AI platforms just to test a simple prompt. So I built this - a single interface where you can:
-- Try different open-source models (Mistral, Llama, Gemma, etc.)
-- See responses side by side
-- Keep it all free using OpenRouter's generous free tier
-- Have a nice, responsive UI that works on any device
+## 🚀 Quick Start
 
-## Features that actually matter
+### Prerequisites
 
-- **Multiple models**: Switch between Mistral 7B, Mixtral 8x7B, Llama 3.1, and Gemma 2
-- **Clean interface**: No clutter, just prompt → response
-- **Free forever**: Uses OpenRouter's free tier models
-- **Keyboard shortcuts**: Ctrl+Enter to submit (because who has time for clicking?)
-- **Token counter**: See roughly how many tokens your prompt will use
-- **Copy responses**: One click to copy AI responses
-- **Dark mode**: Because your eyes will thank you
+- Node.js 18+ 
+- npm or yarn
+- OpenRouter API key (free tier available)
 
-## Getting started
+### Installation
 
-### What you need
-- Node.js 18+ (I used 18.17.0)
-- An OpenRouter API key (free, takes 2 minutes to get)
-
-### Quick setup
-
-1. **Clone this repo**
+1. **Clone the repository**
    ```bash
-   git clone https://github.com/khasimulmd/llm-api-selection-assistant.git
+   git clone https://github.com/yourusername/llm-api-selection-assistant.git
    cd llm-api-selection-assistant
    ```
 
-2. **Install stuff**
+2. **Install dependencies**
    ```bash
    npm install
    ```
 
-3. **Set up your API key**
+3. **Set up environment variables**
    ```bash
-   cp .env.example .env.local
+   cp env.example .env.local
    ```
    
-   Then edit `.env.local` and add your OpenRouter API key:
+   Edit `.env.local` and add your OpenRouter API key:
    ```env
-   OPENROUTER_API_KEY=your_key_here
+   OPENROUTER_API_KEY=your_api_key_here
    ```
 
-4. **Run it**
+4. **Run the development server**
    ```bash
    npm run dev
    ```
 
-5. **Open your browser** to [http://localhost:3000](http://localhost:3000)
+5. **Open your browser**
+   Navigate to [http://localhost:3000](http://localhost:3000)
 
-### Getting your OpenRouter API key
+## 🔧 Configuration
 
-1. Go to [OpenRouter](https://openrouter.ai)
-2. Sign up (takes 30 seconds)
-3. Go to API Keys section
-4. Create a new key
-5. Copy it to your `.env.local` file
+### Environment Variables
 
-That's it. OpenRouter gives you free credits to start, and most of the models I included are available on their free tier.
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `OPENROUTER_API_KEY` | Your OpenRouter API key | Yes |
 
-## Deployment
+### Adding New Models
 
-### Vercel (easiest)
+To add new models, edit the `models` array in `src/app/page.tsx`:
 
-1. Fork this repo to your GitHub
-2. Go to [vercel.com](https://vercel.com) and import your fork
-3. Add the environment variable: `OPENROUTER_API_KEY`
-4. Deploy - Vercel handles the rest
-
-### Other platforms
-
-Works on any platform that supports Next.js:
-- **Netlify**: Connect your repo, add env vars
-- **Railway**: Import from GitHub, set environment variables
-- **DigitalOcean**: Same deal
-
-## Tech stack
-
-- **Frontend**: Next.js 14, React 18, TypeScript
-- **Styling**: Tailwind CSS with shadcn/ui components
-- **Backend**: Next.js API routes
-- **AI**: OpenRouter API
-- **Hosting**: Vercel (but works anywhere)
-
-## Project structure
-
-```
-llm-api-selection-assistant/
-├── src/
-│   ├── app/
-│   │   ├── api/chat/route.ts    # Handles OpenRouter API calls
-│   │   ├── globals.css          # Global styles
-│   │   ├── layout.tsx           # Root layout
-│   │   └── page.tsx             # Main app page
-│   ├── components/ui/           # Reusable UI components
-│   └── lib/utils.ts             # Utility functions
-├── public/                      # Static assets
-└── ... config files
+```typescript
+const models = [
+  { 
+    id: 'your-model-id', 
+    name: 'Your Model Name', 
+    costPer1kTokens: 0.10 
+  },
+  // ... existing models
+];
 ```
 
-## Available models
+## 🚀 Deployment
 
-I picked these because they're solid performers on OpenRouter's free tier:
+### Vercel (Recommended)
 
-- **Mistral 7B Instruct**: Fast and reliable
-- **Mixtral 8x7B Instruct**: More capable, still quick
-- **Llama 3.1 8B Instruct**: Meta's latest, good balance
-- **Gemma 2 9B IT**: Google's efficient option
+1. **Push to GitHub**
+   ```bash
+   git add .
+   git commit -m "Initial commit"
+   git push origin main
+   ```
 
-## Want to run models locally?
+2. **Deploy to Vercel**
+   - Go to [vercel.com](https://vercel.com)
+   - Import your GitHub repository
+   - Add environment variables in the Vercel dashboard
+   - Deploy!
 
-If you prefer to run everything on your machine, you can swap out OpenRouter for Ollama:
+### Other Platforms
 
-1. Install [Ollama](https://ollama.ai)
-2. Pull a model: `ollama pull mistral`
-3. Update the API route to use Ollama's local API
-4. Remove the OpenRouter dependency
+The app can be deployed to any platform that supports Next.js:
 
-## Contributing
+- **Netlify**: Use the Next.js build command
+- **Railway**: Connect your GitHub repo
+- **DigitalOcean App Platform**: Deploy with one click
 
-Found a bug? Want to add a feature? Feel free to:
+## 🔌 API Integration
 
-1. Fork the repo
-2. Create a branch (`git checkout -b fix-that-thing`)
-3. Make your changes
-4. Push to the branch (`git push origin fix-that-thing`)
-5. Open a pull request
+### OpenRouter API
 
-## License
+The app uses OpenRouter's API to access various open-source models. Get your free API key at [openrouter.ai](https://openrouter.ai).
 
-MIT License - do whatever you want with it.
+### Ollama Integration (Local)
 
-## Thanks
+To use local models with Ollama, modify the API route in `src/app/api/chat/route.ts`:
 
-- [OpenRouter](https://openrouter.ai) for the free API access
-- [shadcn/ui](https://ui.shadcn.com) for the clean components
-- [Next.js](https://nextjs.org) for making this so easy to build
-- [Tailwind CSS](https://tailwindcss.com) for the styling
+```typescript
+// Replace the OpenRouter API call with:
+const response = await fetch('http://localhost:11434/api/generate', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    model: model, // e.g., 'mistral:7b-instruct'
+    prompt: prompt,
+    stream: false
+  })
+});
+```
 
-## Questions?
+## 📊 Metrics Explained
 
-- Open an issue on GitHub
-- Check [OpenRouter docs](https://openrouter.ai/docs)
-- Hit up the [Next.js community](https://nextjs.org/community)
+- **Latency**: Time from request to response (in milliseconds)
+- **Tokens**: Number of tokens processed (input + output)
+- **Cost**: Estimated cost based on token usage and model pricing
+- **Session History**: Recent conversations with performance metrics
+
+## 🛠️ Development
+
+### Project Structure
+
+```
+src/
+├── app/
+│   ├── api/
+│   │   └── chat/
+│   │       └── route.ts          # API endpoint
+│   ├── globals.css               # Global styles
+│   ├── layout.tsx                # Root layout
+│   └── page.tsx                  # Main page
+├── components/                   # Reusable components
+└── types/                        # TypeScript types
+```
+
+### Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+
+### Adding Features
+
+1. **New Models**: Add to the `models` array in `page.tsx`
+2. **API Providers**: Modify the API route in `route.ts`
+3. **UI Components**: Create new components in `components/`
+4. **Styling**: Use Tailwind CSS classes or add to `globals.css`
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- [OpenRouter](https://openrouter.ai) for providing access to open-source models
+- [Next.js](https://nextjs.org) for the amazing React framework
+- [Tailwind CSS](https://tailwindcss.com) for the utility-first CSS framework
+- [Vercel](https://vercel.com) for hosting and deployment
+
+## 📞 Support
+
+- **Issues**: [GitHub Issues](https://github.com/yourusername/llm-api-selection-assistant/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/yourusername/llm-api-selection-assistant/discussions)
+- **Email**: your-email@example.com
 
 ---
 
-**Built by [khasimulmd](https://github.com/khasimulmd)**
-
-If this helps you, consider giving it a star! ⭐
+Made with ❤️ for the AI developer community
